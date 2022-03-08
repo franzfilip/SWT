@@ -102,10 +102,30 @@ public class EmployeeManager {
     return deleted;
   }
 
+  public static Employee findEmployeeById(long emplId){
+    Session session = HibernateUtil.getCurrentSession();
+    Transaction tx = session.beginTransaction();
+
+    Employee empl = session.find(Employee.class, emplId);
+    tx.commit();
+    return empl;
+  }
+
+  public static List<Employee> findEmployeeByLastName(String lastName){
+    Session session = HibernateUtil.getCurrentSession();
+    Transaction tx = session.beginTransaction();
+
+    Query<Employee> qry = session.createQuery("select e from Employee e where e.lastName like :lastName", Employee.class);
+    qry.setParameter("lastName", "%"+lastName+"%");
+    List<Employee> empls = qry.getResultList();
+    tx.commit();
+    return empls;
+  }
+
   public static void main(String[] args) {
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d.M.yyyy");
     BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-    String availCmds = "commands: quit, insert, list, update, delete";
+    String availCmds = "commands: quit, insert, list, update, delete, findById, findByLastName";
     
     System.out.println("Hibernate Employee Admin");
     System.out.println(availCmds);
@@ -147,6 +167,16 @@ public class EmployeeManager {
           boolean success = deleteEmployee(Long.parseLong(promptFor(in, "id")));
           System.out.println(success ? "employee deleted": "employee not found");
           break;
+        case "findById":{
+          System.out.println(findEmployeeById(Long.parseLong(promptFor(in, "id"))));
+          break;
+        }
+        case "findByLastName":{
+          for(var empl : findEmployeeByLastName(promptFor(in, "lastName"))){
+            System.out.println(empl);
+          }
+          break;
+        }
 
         default:
           System.out.println("ERROR: invalid command");
