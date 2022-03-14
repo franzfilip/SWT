@@ -1,4 +1,4 @@
-package swt6;
+package swt6.domain;
 
 public class PaymentDetails {
 }
