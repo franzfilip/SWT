@@ -6,14 +6,8 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="intro-orm" />
-        <module name="worklog-orm (1)" />
-        <module name="worklog-orm-v2" />
+        <module name="datamodel" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="worklog-orm" target="17" />
-      <module name="worklog-orm (1)" target="17" />
-    </bytecodeTargetLevel>
   </component>
 </project>
