@@ -32,15 +32,23 @@ public class Article {
     @ManyToOne
     private Customer buyer;
 
+    @ManyToOne
+    private Category category;
+
+    @Column(nullable = false)
+    private BiddingState state;
+
     public Article(){}
 
-    public Article(String name, String description, double startPrice, LocalDateTime startTime, LocalDateTime endTime, Customer trader) {
+    public Article(String name, String description, double startPrice, LocalDateTime startTime, LocalDateTime endTime, Customer trader, Category category, BiddingState state) {
         this.name = name;
         this.description = description;
         this.startPrice = startPrice;
         this.startTime = startTime;
         this.endTime = endTime;
         this.trader = trader;
+        this.category = category;
+        this.state = state;
     }
 
     public double getFinalPrice() {
@@ -113,5 +121,38 @@ public class Article {
 
     public void setBuyer(Customer buyer) {
         this.buyer = buyer;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public BiddingState getState() {
+        return state;
+    }
+
+    public void setState(BiddingState state) {
+        this.state = state;
+    }
+
+    @Override
+    public String toString() {
+        return "Article{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", startPrice=" + startPrice +
+                ", finalPrice=" + finalPrice +
+                ", startTime=" + startTime +
+                ", endTime=" + endTime +
+                ", trader=" + trader +
+                ", buyer=" + buyer +
+                ", category=" + category +
+                ", state=" + state +
+                '}';
     }
 }

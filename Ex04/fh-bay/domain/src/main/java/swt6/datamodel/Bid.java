@@ -70,4 +70,15 @@ public class Bid {
     public void setTimestamp(LocalDateTime timestamp) {
         this.timestamp = timestamp;
     }
+
+    @Override
+    public String toString() {
+        return "Bid{" +
+                "id=" + id +
+                ", amount=" + amount +
+                ", bidder=" + bidder +
+                ", article=" + article +
+                ", timestamp=" + timestamp +
+                '}';
+    }
 }

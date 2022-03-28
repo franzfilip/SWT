@@ -85,4 +85,16 @@ public class Customer {
     public void setPaymentAddress(Address paymentAddress) {
         this.paymentAddress = paymentAddress;
     }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", shipmentAddress=" + shipmentAddress +
+                ", paymentAddress=" + paymentAddress +
+                '}';
+    }
 }
