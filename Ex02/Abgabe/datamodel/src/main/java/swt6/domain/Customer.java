@@ -1,13 +1,18 @@
 package swt6.domain;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Customer {
     @Id @GeneratedValue
     private long id;
+    @Column(nullable = false)
     private String firstName;
+    @Column(nullable = false)
     private String lastName;
+    @Column(nullable = false, unique = true)
     private String email;
     @Embedded
     @AttributeOverride(name="zipCode", column = @Column(name="shipment_zipCode"))
